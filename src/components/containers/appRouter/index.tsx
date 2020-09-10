@@ -23,8 +23,6 @@ const routesConfiguration: Array<IRoute> = [
     { order: 3, component: ReportsPage, path: "/reports", name: "Reports", isVisible: true }
 ]
 
-
-
 export default function AppRouter() {
     return <Switch>
         <RoutesApp routes={routesConfiguration} />
