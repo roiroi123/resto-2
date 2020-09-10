@@ -2,11 +2,12 @@ import React from "react"
 import HomePage from "../pages/home"
 import AboutPage from "../pages/about"
 import OrdersPage from "../pages/orders"
-import ReportsPage from "../pages/orders"
+import ReportsPage from "../pages/reports"
+import { Switch } from "react-router-dom";
+import RoutesApp from "./routesApp"
 
 
-
-interface IRoute {
+export interface IRoute {
     component: any,
     path: string,
     name?: string,
@@ -25,5 +26,7 @@ const routesConfiguration: Array<IRoute> = [
 
 
 export default function AppRouter() {
-    return <div> About </div>
+    return <Switch>
+        <RoutesApp routes={routesConfiguration} />
+    </Switch>
 }
