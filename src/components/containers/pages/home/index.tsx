@@ -1,6 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
+import { MealsContext } from "App"
 
 
 export default function HomePage() {
-    return <div> HomePage </div>
+    const [state, setState] = useContext(MealsContext)
+
+    return <div> {JSON.stringify(state)} </div>
 }
