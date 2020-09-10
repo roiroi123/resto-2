@@ -5,7 +5,7 @@ import NavBarApp from './components/ui-components/header/';
 import AppRouter from './components/containers/appRouter';
 import { BrowserRouter as Router } from "react-router-dom"
 
-const initialState = { meals: ["a", "b"] }
+const initialState = { meals: [], orders: [] }
 export const MealsContext: any = React.createContext(null)
 
 function App() {
