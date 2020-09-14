@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { MealsContext } from "App";
 import axios from "axios";
-import Meal from "components/ui-components/meal";
+import Meal, { IMeal } from "components/ui-components/meal";
 
 export default function HomePage() {
   const [state, setState] = useContext(MealsContext);
@@ -12,7 +12,10 @@ export default function HomePage() {
       setState({ ...state, meals: [...state?.meals, ...result.data] });
     } catch (ex) {}
   }
-
+  //action(props)
+  function addMeal(meal: IMeal) {
+    setState({ ...state, orders: [...state.orders, meal] });
+  }
   useEffect(() => {
     getRecipesApi();
   }, []);
@@ -20,7 +23,7 @@ export default function HomePage() {
   return (
     <div className="row">
       {state?.meals.map((meal: any) => {
-        return <Meal actionTitle="Order Now" {...meal} />;
+        return <Meal actionTitle="Order Now" {...meal} action={addMeal} />;
       })}
     </div>
   );

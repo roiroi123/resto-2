@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { MealsContext } from "App";
 import Rating from "components/ui-components/rating";
 
-interface IMeal {
+export interface IMeal {
   name: string;
   description: string;
   image: string;
@@ -14,11 +14,12 @@ interface IMeal {
   rating: number;
 }
 export default function Meal(props: IMeal) {
-  const [state, setState] = useContext(MealsContext);
+  const { action } = props;
 
-  // we will change it next lesson
-  function addMeal() {
-    setState({ ...state, orders: [...state.orders, props] });
+  function onAction() {
+    const { name, image, description, rating } = props;
+    action({ name, image, description, rating }); // action can be( addMeal, removeMeal, editMeal etc..)
+    // action(props);
   }
   return (
     <Card className="col-lg-4">
@@ -26,7 +27,7 @@ export default function Meal(props: IMeal) {
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>{props.description}</Card.Text>
-        <Button variant={props.cls || "primary"} onClick={addMeal}>
+        <Button variant={props.cls || "primary"} onClick={onAction}>
           {props.actionTitle}
         </Button>
         <Rating stars={props.rating} />
