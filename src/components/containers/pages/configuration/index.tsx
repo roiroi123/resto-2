@@ -1,12 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext,useReducer } from "react";
 import Button from "react-bootstrap/Button";
 import { ConfigurationContext } from "App";
+import ConfReducer from '../../../../app-reducer/confReducer'
+
+
+
 
 export default function ConfigurationPage() {
   const [getConfig, setConfig] = useContext(ConfigurationContext);
-
+  
+  const [state,dispatch] = useReducer(ConfReducer,getConfig)
+  
   function onColorChange(color: string): void {
-    setConfig({ ...getConfig, starsColor: color });
+    // setConfig({ ...getConfig, starsColor: color });
+    
+    dispatch({ type: `${color}` , payload: color });
+    
+    setConfig({...getConfig,starsColor:state.starsColor})
+    
+   
+
   }
 
   const configButtonsColor = [
@@ -32,6 +45,7 @@ export default function ConfigurationPage() {
 
   function ButtonWrapper(props: { color: string }) {
     const { color } = props;
+    
     return (
       <Button
         onClick={() => {

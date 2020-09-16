@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { MealsContext } from "App";
 import axios from "axios";
 import Meal, { IMeal } from "components/ui-components/meal";
+import Filter from "components/ui-components/Filter/Filter";
+ 
 
 export default function HomePage() {
   const [state, dispatch] = useContext(MealsContext);
@@ -24,6 +26,7 @@ export default function HomePage() {
   if (!state.meals) return <span> No Meals </span>;
   return (
     <div className="row">
+    <Filter/>
       {state?.meals.map((meal: any) => {
         return (
           <Meal
